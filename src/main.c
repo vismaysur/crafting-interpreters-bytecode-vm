@@ -9,10 +9,10 @@ int main(int argc, const char *argv[]) {
 
   // A single instruction contains an opcode and operand(s).
   int constant = addConstant(&chunk, 1.2);
-  writeChunk(&chunk, OP_CONSTANT);
-  writeChunk(&chunk, constant);
+  writeChunk(&chunk, OP_CONSTANT, 5);
+  writeChunk(&chunk, constant, 5);
 
-  writeChunk(&chunk, OP_RETURN);
+  writeChunk(&chunk, OP_RETURN, 5);
 
   disassembleChunk(&chunk, "Test Chunk");
 

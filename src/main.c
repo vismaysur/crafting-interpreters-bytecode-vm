@@ -7,7 +7,11 @@ int main(int argc, const char *argv[]) {
 
   initChunk(&chunk);
 
-  writeChunk(&chunk, OP_RETURN);
+  // A single instruction contains an opcode and operand(s).
+  int constant = addConstant(&chunk, 1.2);
+  writeChunk(&chunk, OP_CONSTANT);
+  writeChunk(&chunk, constant);
+
   writeChunk(&chunk, OP_RETURN);
 
   disassembleChunk(&chunk, "Test Chunk");

@@ -4,6 +4,7 @@
 #include "debug.h"
 #include "memory.h"
 #include "object.h"
+#include "table.h"
 #include "value.h"
 #include <stdarg.h>
 #include <stdint.h>
@@ -16,6 +17,7 @@ static void resetStack() { vm.stackTop = vm.stack; }
 
 void initVM() {
   resetStack();
+  initTable(&vm.strings);
   vm.objects = NULL;
 }
 
@@ -39,7 +41,10 @@ void freeObjects() {
   }
 }
 
-void freeVM() { freeObjects(); }
+void freeVM() {
+  freeTable(&vm.strings);
+  freeObjects();
+}
 
 void push(Value value) {
   *vm.stackTop = value;
@@ -193,8 +198,6 @@ static InterpretResult run() {
     }
 
     case OP_LESSER: {
-      Value b = pop();
-      Value a = pop();
       BINARY_OP(BOOL_VAL, <);
       break;
     }

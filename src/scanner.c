@@ -138,7 +138,7 @@ TokenType identifierType() {
     if (scanner.current - scanner.start > 1) {
       switch (scanner.start[1]) {
       case 'a':
-        return checkKeyword(2, "alse", TOKEN_FALSE);
+        return checkKeyword(2, "lse", TOKEN_FALSE);
       case 'o':
         return checkKeyword(2, "r", TOKEN_FOR);
       case 'u':

@@ -10,6 +10,17 @@ typedef struct {
   bool panicMode;
 } Parser;
 
+typedef struct {
+  Token name;
+  int depth;
+} Local;
+
+typedef struct {
+  Local locals[UINT8_COUNT];
+  int localCount;
+  int scopeDepth;
+} Compiler;
+
 typedef enum {
   PREC_NONE,
   PREC_ASSIGNMENT,
